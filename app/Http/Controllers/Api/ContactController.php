@@ -18,11 +18,6 @@ class ContactController extends Controller
         return ContactResource::collection($contacts);
     }
 
-    public function create()
-    {
-        // TODO: implement method
-    }
-
     public function store(StoreContactRequest $request)
     {
         // $contact = new Contact();
@@ -45,11 +40,6 @@ class ContactController extends Controller
         // $contact = Contact::where('id', 'LIKE', '%' . $id . '%')->first();
         // $contact = Contact::findOrFail($id);
         return ContactResource::make($contact);
-    }
-
-    public function edit()
-    {
-        // TODO: implement method
     }
 
     public function update(UpdateContactRequest $request, int $id)

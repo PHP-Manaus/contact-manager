@@ -3,37 +3,53 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Contact\StoreContactRequest;
+use App\Http\Requests\Contact\UpdateContactRequest;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        return view('contacts.index');
+        $contacts = Contact::all(); // paginate();
+        return view('contacts.index', ['contacts' => $contacts]);
     }
 
     public function create()
     {
-        // TODO: implement method
+        return view('contacts.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         // TODO: implement method
+        return redirect()->route('web.contacts.index');
     }
 
-    public function edit()
+    public function show(int $id)
     {
-        // TODO: implement method
+        $contact = Contact::findOrFail($id);
+        return view('contacts.show', ['contact' => $contact]);
     }
 
-    public function update()
+    public function edit(int $id)
     {
         // TODO: implement method
+        return view('contacts.edit');
     }
 
-    public function destroy()
+    public function update(int $id, Request $request)
     {
         // TODO: implement method
+        return redirect()->route('web.contacts.index');
+    }
+
+    public function destroy(int $id)
+    {
+        $contact = Contact::findOrFail($id);
+        $contact->delete();
+
+        return redirect()->route('web.contacts.index');
     }
 }
