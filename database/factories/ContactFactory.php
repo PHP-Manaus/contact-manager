@@ -17,7 +17,11 @@ class ContactFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => mt_rand(00000000000, 99999999999), // (92) 99999-9999
+            'city' => $this->faker->city(),
+            'state' => $this->faker->state(),
         ];
     }
 }
